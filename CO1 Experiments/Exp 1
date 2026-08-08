@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic HTML Web Page</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+        }
+
+        .container {
+            width: 70%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px gray;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        h2 {
+            text-align: center;
+            color: darkgreen;
+        }
+
+        h3 {
+            text-align: center;
+            color: crimson;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        hr {
+            border: 2px solid steelblue;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            background-color: darkblue;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Welcome to HTML</h1>
+        <h2>Experiment 1: Creating a Basic HTML Web Page</h2>
+
+        <hr>
+
+        <p>
+            HTML stands for <b>HyperText Markup Language</b>. It is used to create
+            <i>web pages</i> and display content on the internet.
+        </p>
+
+        <p>
+            This text is <u>underlined</u>.<br>
+            This line is displayed after a line break.
+        </p>
+
+        <p>
+            Mathematical Formula:
+            x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup>
+        </p>
+
+        <p>
+            Chemical Formula:
+            H<sub>2</sub>O and CO<sub>2</sub>
+        </p>
+
+        <hr>
+
+        <h3>Thank You!</h3>
+
+        <div class="footer">
+            Created by: Lakshmi | Basic HTML Web Page
+        </div>
+
+    </div>
+
+</body>
+</html>
