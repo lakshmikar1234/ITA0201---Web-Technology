@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Responsive Student Profile</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(to right,#4facfe,#00f2fe);
+}
+
+.container{
+    width:80%;
+    max-width:900px;
+    margin:40px auto;
+    background:white;
+    border-radius:15px;
+    box-shadow:0px 0px 15px gray;
+    overflow:hidden;
+}
+
+.header{
+    background:#003366;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.header h1{
+    margin-bottom:10px;
+}
+
+.profile{
+    text-align:center;
+    padding:25px;
+}
+
+.profile img{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    border:5px solid #0099cc;
+    box-shadow:0px 0px 10px gray;
+}
+
+.profile h2{
+    margin-top:15px;
+    color:#003366;
+}
+
+.profile p{
+    color:gray;
+    font-size:18px;
+}
+
+.details{
+    padding:25px;
+}
+
+.details table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.details th{
+    background:#0099cc;
+    color:white;
+    padding:12px;
+}
+
+.details td{
+    border:1px solid #ccc;
+    padding:12px;
+}
+
+.skills{
+    padding:25px;
+}
+
+.skills h2{
+    color:#003366;
+    margin-bottom:10px;
+}
+
+.skills ul{
+    list-style:square;
+    margin-left:25px;
+    font-size:18px;
+}
+
+.footer{
+    background:#003366;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+/* Responsive Design */
+
+@media screen and (max-width:768px){
+
+.container{
+    width:95%;
+}
+
+.profile img{
+    width:140px;
+    height:140px;
+}
+
+.header h1{
+    font-size:24px;
+}
+
+.details table,
+.details tr,
+.details td,
+.details th{
+    display:block;
+    width:100%;
+}
+
+.details th{
+    margin-top:10px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>Student Profile</h1>
+<p>Responsive Web Page using HTML & CSS</p>
+</div>
+
+<div class="profile">
+
+<img src="student.jpg" alt="Student Image">
+
+<h2>Lakshmi</h2>
+
+<p>B.Tech Computer Science Engineering</p>
+
+</div>
+
+<div class="details">
+
+<table>
+
+<tr>
+<th>Field</th>
+<th>Details</th>
+</tr>
+
+<tr>
+<td>Register Number</td>
+<td>21CSE001</td>
+</tr>
+
+<tr>
+<td>Department</td>
+<td>Computer Science Engineering</td>
+</tr>
+
+<tr>
+<td>Year</td>
+<td>III Year</td>
+</tr>
+
+<tr>
+<td>Email</td>
+<td>lakshmi@example.com</td>
+</tr>
+
+<tr>
+<td>Mobile</td>
+<td>9876543210</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="skills">
+
+<h2>Skills</h2>
+
+<ul>
+<li>HTML & CSS</li>
+<li>JavaScript</li>
+<li>Python Programming</li>
+<li>Java</li>
+<li>Database Management</li>
+</ul>
+
+</div>
+
+<div class="footer">
+
+© 2026 Student Profile | Web Technology Lab
+
+</div>
+
+</div>
+
+</body>
+</html>
