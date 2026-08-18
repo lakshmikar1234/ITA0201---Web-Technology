@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Debugging Demo</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(to right,#36d1dc,#5b86e5);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 15px gray;
+text-align:center;
+width:400px;
+
+}
+
+input{
+
+width:100%;
+padding:10px;
+margin:15px 0;
+
+}
+
+button{
+
+padding:12px 20px;
+background:#0066cc;
+color:white;
+border:none;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#004d99;
+
+}
+
+#result{
+
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Debugging Example</h2>
+
+<input type="number" id="num1" placeholder="Enter First Number">
+
+<input type="number" id="num2" placeholder="Enter Second Number">
+
+<button onclick="divide()">Divide</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function divide(){
+
+try{
+
+let a=Number(document.getElementById("num1").value);
+
+let b=Number(document.getElementById("num2").value);
+
+console.log("First Number:",a);
+console.log("Second Number:",b);
+
+debugger;
+
+if(b===0){
+
+throw "Cannot divide by zero";
+
+}
+
+let answer=a/b;
+
+document.getElementById("result").innerHTML=
+"Result : "+answer;
+
+}
+
+catch(error){
+
+document.getElementById("result").innerHTML=
+"<span style='color:red;'>"+error+"</span>";
+
+console.log(error);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

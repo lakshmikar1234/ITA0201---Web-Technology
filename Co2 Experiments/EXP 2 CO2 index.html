@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Registration Form</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(to right,#4facfe,#00f2fe);
+}
+
+.container{
+    width:420px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0px 0px 15px gray;
+}
+
+h1{
+    text-align:center;
+    color:#003366;
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-top:12px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #999;
+    border-radius:6px;
+    font-size:16px;
+}
+
+textarea{
+    resize:none;
+}
+
+.gender{
+    width:auto;
+}
+
+.buttons{
+    margin-top:20px;
+    display:flex;
+    justify-content:space-between;
+}
+
+button{
+    width:48%;
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.submit{
+    background:green;
+}
+
+.reset{
+    background:red;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+#message{
+    margin-top:20px;
+    text-align:center;
+    font-weight:bold;
+}
+
+@media(max-width:500px){
+
+.container{
+    width:95%;
+}
+
+.buttons{
+    flex-direction:column;
+}
+
+button{
+    width:100%;
+    margin-top:10px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Student Registration</h1>
+
+<form id="studentForm">
+
+<label>Student Name</label>
+<input type="text" id="name">
+
+<label>Register Number</label>
+<input type="text" id="regno">
+
+<label>Email</label>
+<input type="text" id="email">
+
+<label>Mobile Number</label>
+<input type="text" id="mobile">
+
+<label>Password</label>
+<input type="password" id="password">
+
+<label>Department</label>
+
+<select id="department">
+<option value="">Select Department</option>
+<option>CSE</option>
+<option>ECE</option>
+<option>EEE</option>
+<option>AI & DS</option>
+<option>Mechanical</option>
+</select>
+
+<label>Gender</label>
+
+<input type="radio" name="gender" value="Male" class="gender"> Male
+
+<input type="radio" name="gender" value="Female" class="gender"> Female
+
+<input type="radio" name="gender" value="Other" class="gender"> Other
+
+<label>Address</label>
+
+<textarea id="address" rows="4"></textarea>
+
+<div class="buttons">
+
+<button type="submit" class="submit">Register</button>
+
+<button type="reset" class="reset">Reset</button>
+
+</div>
+
+</form>
+
+<p id="message"></p>
+
+</div>
+
+<script>
+
+document.getElementById("studentForm").addEventListener("submit",validateForm);
+
+function validateForm(event){
+
+event.preventDefault();
+
+let name=document.getElementById("name").value.trim();
+let reg=document.getElementById("regno").value.trim();
+let email=document.getElementById("email").value.trim();
+let mobile=document.getElementById("mobile").value.trim();
+let password=document.getElementById("password").value;
+let dept=document.getElementById("department").value;
+let address=document.getElementById("address").value.trim();
+
+let gender=document.querySelector('input[name="gender"]:checked');
+
+let message=document.getElementById("message");
+
+let namePattern=/^[A-Za-z ]+$/;
+let regPattern=/^[A-Za-z0-9]+$/;
+let emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let mobilePattern=/^[0-9]{10}$/;
+let passwordPattern=/^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+
+if(name==""||reg==""||email==""||mobile==""||password==""||dept==""||address==""){
+message.style.color="red";
+message.innerHTML="Please fill all fields.";
+return;
+}
+
+if(!namePattern.test(name)){
+message.style.color="red";
+message.innerHTML="Name should contain only alphabets.";
+return;
+}
+
+if(!regPattern.test(reg)){
+message.style.color="red";
+message.innerHTML="Invalid Register Number.";
+return;
+}
+
+if(!emailPattern.test(email)){
+message.style.color="red";
+message.innerHTML="Invalid Email Address.";
+return;
+}
+
+if(!mobilePattern.test(mobile)){
+message.style.color="red";
+message.innerHTML="Mobile Number must contain 10 digits.";
+return;
+}
+
+if(!passwordPattern.test(password)){
+message.style.color="red";
+message.innerHTML="Password must be at least 6 characters with letters and numbers.";
+return;
+}
+
+if(gender==null){
+message.style.color="red";
+message.innerHTML="Please select Gender.";
+return;
+}
+
+message.style.color="green";
+message.innerHTML="Student Registered Successfully!";
+
+}
+
+</script>
+
+</body>
+</html>
