@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>University Course Registration Portal</title>
+
+    <style>
+        /* ---------- General Styling ---------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7fb;
+            color: #222;
+        }
+
+        /* ---------- Header ---------- */
+        header {
+            background: linear-gradient(135deg, #183b70, #2563a8);
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 17px;
+        }
+
+        /* ---------- Navigation ---------- */
+        nav {
+            background-color: #102a4c;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #357abd;
+        }
+
+        /* ---------- Main Container ---------- */
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        section h2 {
+            color: #183b70;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2563a8;
+            padding-bottom: 8px;
+        }
+
+        /* ---------- Welcome Section ---------- */
+        .welcome {
+            text-align: center;
+        }
+
+        .welcome p {
+            margin-bottom: 15px;
+        }
+
+        .quick-links a {
+            display: inline-block;
+            background-color: #2563a8;
+            color: white;
+            padding: 10px 18px;
+            margin: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .quick-links a:hover {
+            background-color: #183b70;
+            transform: translateY(-2px);
+        }
+
+        /* ---------- Course Table ---------- */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #183b70;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f6fa;
+        }
+
+        tr:hover {
+            background-color: #dceeff;
+        }
+
+        /* ---------- Instructions ---------- */
+        .instructions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .instructions ul,
+        .instructions ol {
+            padding-left: 25px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        /* ---------- Registration Form ---------- */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input,
+        select {
+            padding: 11px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2563a8;
+            box-shadow: 0 0 5px rgba(37, 99, 168, 0.3);
+        }
+
+        /* ---------- Course Selection ---------- */
+        .course-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .course-option {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f8fafc;
+            transition: 0.3s;
+        }
+
+        .course-option:hover {
+            background-color: #e5f1ff;
+            border-color: #2563a8;
+        }
+
+        .course-option label {
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .course-option input {
+            margin-right: 8px;
+        }
+
+        /* ---------- Buttons ---------- */
+        .button-area {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            background-color: #198754;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #146c43;
+            transform: translateY(-2px);
+        }
+
+        /* ---------- Error Message ---------- */
+        #errorMessage {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #ffe6e6;
+            color: #b00020;
+            border-left: 5px solid #b00020;
+            border-radius: 5px;
+        }
+
+        /* ---------- Dynamic Summary ---------- */
+        #summary {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e9f7ef;
+            border: 2px solid #198754;
+            border-radius: 8px;
+        }
+
+        #summary h3 {
+            color: #146c43;
+            margin-bottom: 12px;
+        }
+
+        #selectedCourses {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+
+        #selectedCourses li {
+            margin-bottom: 5px;
+        }
+
+        /* ---------- Contact ---------- */
+        .contact-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .contact-box {
+            flex: 1;
+            min-width: 220px;
+            padding: 15px;
+            background-color: #f2f6fa;
+            border-radius: 8px;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background-color: #102a4c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* ---------- Responsive Design ---------- */
+        @media (max-width: 768px) {
+
+            .instructions {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .course-options {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav a {
+                padding: 10px;
+            }
+
+            main {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>University Course Registration Portal</h1>
+        <p>Register for your semester courses quickly and easily</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#registration">Registration</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <!-- Home -->
+        <section id="home" class="welcome">
+
+            <h2>Welcome to the Course Registration Portal</h2>
+
+            <p>
+                This portal allows students to view available courses
+                and submit their semester course registration details.
+            </p>
+
+            <div class="quick-links">
+                <a href="#courses">View Courses</a>
+                <a href="#registration">Register Now</a>
+            </div>
+
+        </section>
+
+        <!-- Courses -->
+        <section id="courses">
+
+            <h2>Available Courses</h2>
+
+            <div class="table-container">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Credits</th>
+                            <th>Course Type</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>WEB301</td>
+                            <td>Web Technology</td>
+                            <td>4</td>
+                            <td>Theory</td>
+                        </tr>
+
+                        <tr>
+                            <td>AI302</td>
+                            <td>Artificial Intelligence</td>
+                            <td>4</td>
+                            <td>Theory</td>
+                        </tr>
+
+                        <tr>
+                            <td>WEB303</td>
+                            <td>Web Technology Laboratory</td>
+                            <td>2</td>
+                            <td>Practical</td>
+                        </tr>
+
+                        <tr>
+                            <td>ML304</td>
+                            <td>Machine Learning</td>
+                            <td>4</td>
+                            <td>Theory</td>
+                        </tr>
+
+                        <tr>
+                            <td>DB305</td>
+                            <td>Database Systems</td>
+                            <td>3</td>
+                            <td>Theory</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Instructions -->
+        <section>
+
+            <h2>Registration Instructions</h2>
+
+            <div class="instructions">
+
+                <div>
+                    <h3>Steps to Register</h3>
+
+                    <ol>
+                        <li>Enter your Register Number.</li>
+                        <li>Enter your full name.</li>
+                        <li>Provide a valid university email.</li>
+                        <li>Select your department and semester.</li>
+                        <li>Select one or more courses.</li>
+                        <li>Click the Register button.</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <h3>Eligibility Requirements</h3>
+
+                    <ul>
+                        <li>Student must have a valid Register Number.</li>
+                        <li>Student must use a valid email address.</li>
+                        <li>Semester must be between 1 and 8.</li>
+                        <li>Selected courses must be available.</li>
+                        <li>All mandatory fields must be completed.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <p style="margin-top:15px;">
+                Visit the
+                <a href="https://www.example.com"
+                   target="_blank">
+                    University Website
+                </a>
+                for additional information.
+            </p>
+
+        </section>
+
+        <!-- Registration -->
+        <section id="registration">
+
+            <h2>Student Registration Form</h2>
+
+            <form id="registrationForm">
+
+                <div class="form-grid">
+
+                    <!-- Register Number -->
+                    <div class="form-group">
+                        <label for="regno">Register Number</label>
+
+                        <input type="text"
+                               id="regno"
+                               name="regno"
+                               placeholder="Enter register number">
+                    </div>
+
+                    <!-- Student Name -->
+                    <div class="form-group">
+                        <label for="studentName">Student Name</label>
+
+                        <input type="text"
+                               id="studentName"
+                               name="studentName"
+                               placeholder="Enter student name">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+
+                        <input type="email"
+                               id="email"
+                               name="email"
+                               placeholder="student@university.edu">
+                    </div>
+
+                    <!-- Department -->
+                    <div class="form-group">
+                        <label for="department">Department</label>
+
+                        <select id="department" name="department">
+
+                            <option value="">Select Department</option>
+                            <option value="Computer Science">
+                                Computer Science
+                            </option>
+                            <option value="Information Technology">
+                                Information Technology
+                            </option>
+                            <option value="Electronics">
+                                Electronics
+                            </option>
+                            <option value="Mechanical">
+                                Mechanical
+                            </option>
+                            <option value="Civil">
+                                Civil
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <!-- Semester -->
+                    <div class="form-group">
+                        <label for="semester">Semester</label>
+
+                        <select id="semester" name="semester">
+
+                            <option value="">Select Semester</option>
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                            <option value="7">Semester 7</option>
+                            <option value="8">Semester 8</option>
+
+                        </select>
+                    </div>
+
+                    <!-- Course Selection -->
+                    <div class="form-group full">
+
+                        <label>Select Courses</label>
+
+                        <div class="course-options">
+
+                            <div class="course-option">
+                                <label>
+                                    <input type="checkbox"
+                                           name="course"
+                                           value="WEB301">
+                                    Web Technology (4 Credits)
+                                </label>
+                            </div>
+
+                            <div class="course-option">
+                                <label>
+                                    <input type="checkbox"
+                                           name="course"
+                                           value="AI302">
+                                    Artificial Intelligence (4 Credits)
+                                </label>
+                            </div>
+
+                            <div class="course-option">
+                                <label>
+                                    <input type="checkbox"
+                                           name="course"
+                                           value="WEB303">
+                                    Web Technology Laboratory (2 Credits)
+                                </label>
+                            </div>
+
+                            <div class="course-option">
+                                <label>
+                                    <input type="checkbox"
+                                           name="course"
+                                           value="ML304">
+                                    Machine Learning (4 Credits)
+                                </label>
+                            </div>
+
+                            <div class="course-option">
+                                <label>
+                                    <input type="checkbox"
+                                           name="course"
+                                           value="DB305">
+                                    Database Systems (3 Credits)
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage"></div>
+
+                <!-- Submit Button -->
+                <div class="button-area">
+
+                    <button type="submit">
+                        Register Courses
+                    </button>
+
+                </div>
+
+            </form>
+
+            <!-- Dynamic Registration Summary -->
+            <div id="summary">
+
+                <h3>Registration Summary</h3>
+
+                <p>
+                    <strong>Student Name:</strong>
+                    <span id="summaryName"></span>
+                </p>
+
+                <p>
+                    <strong>Register Number:</strong>
+                    <span id="summaryRegno"></span>
+                </p>
+
+                <p>
+                    <strong>Department:</strong>
+                    <span id="summaryDepartment"></span>
+                </p>
+
+                <p>
+                    <strong>Selected Courses:</strong>
+                </p>
+
+                <ul id="selectedCourses"></ul>
+
+                <p>
+                    <strong>Total Number of Courses:</strong>
+                    <span id="totalCourses"></span>
+                </p>
+
+                <p>
+                    <strong>Total Credits:</strong>
+                    <span id="totalCredits"></span>
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+
+            <h2>Contact Details</h2>
+
+            <div class="contact-grid">
+
+                <div class="contact-box">
+                    <h3>Academic Office</h3>
+                    <p>University Main Campus</p>
+                </div>
+
+                <div class="contact-box">
+                    <h3>Email</h3>
+                    <p>academic@university.edu</p>
+                </div>
+
+                <div class="contact-box">
+                    <h3>Phone</h3>
+                    <p>+91 98765 43210</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 University Course Registration Portal</p>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        // Course information stored in an array of objects
+        const courses = [
+            {
+                code: "WEB301",
+                name: "Web Technology",
+                credits: 4
+            },
+            {
+                code: "AI302",
+                name: "Artificial Intelligence",
+                credits: 4
+            },
+            {
+                code: "WEB303",
+                name: "Web Technology Laboratory",
+                credits: 2
+            },
+            {
+                code: "ML304",
+                name: "Machine Learning",
+                credits: 4
+            },
+            {
+                code: "DB305",
+                name: "Database Systems",
+                credits: 3
+            }
+        ];
+
+
+        // Reusable function to calculate course count and credits
+        function calculateRegistration(selectedCodes) {
+
+            let totalCourses = selectedCodes.length;
+            let totalCredits = 0;
+
+            selectedCodes.forEach(function(code) {
+
+                const course = courses.find(function(item) {
+                    return item.code === code;
+                });
+
+                if (course) {
+                    totalCredits += course.credits;
+                }
+
+            });
+
+            return {
+                totalCourses: totalCourses,
+                totalCredits: totalCredits
+            };
+        }
+
+
+        // Form submit event
+        document.getElementById("registrationForm")
+            .addEventListener("submit", function(event) {
+
+                // Prevent complete page reload
+                event.preventDefault();
+
+                // Read form values
+                const regno =
+                    document.getElementById("regno").value.trim();
+
+                const studentName =
+                    document.getElementById("studentName").value.trim();
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+                const department =
+                    document.getElementById("department").value;
+
+                const semester =
+                    document.getElementById("semester").value;
+
+                const errorMessage =
+                    document.getElementById("errorMessage");
+
+                const summary =
+                    document.getElementById("summary");
+
+
+                // Clear previous error
+                errorMessage.style.display = "none";
+                errorMessage.textContent = "";
+
+
+                // ---------- Validation ----------
+
+                if (regno === "" ||
+                    studentName === "" ||
+                    email === "" ||
+                    department === "" ||
+                    semester === "") {
+
+                    errorMessage.textContent =
+                        "Please fill in all mandatory fields.";
+
+                    errorMessage.style.display = "block";
+
+                    return;
+                }
+
+
+                // Email validation
+                const emailPattern =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+
+                    errorMessage.textContent =
+                        "Please enter a valid email address.";
+
+                    errorMessage.style.display = "block";
+
+                    return;
+                }
+
+
+                // Semester validation
+                const semesterNumber = Number(semester);
+
+                if (semesterNumber < 1 ||
+                    semesterNumber > 8) {
+
+                    errorMessage.textContent =
+                        "Semester must be between 1 and 8.";
+
+                    errorMessage.style.display = "block";
+
+                    return;
+                }
+
+
+                // Get selected courses
+                const selectedCheckboxes =
+                    document.querySelectorAll(
+                        'input[name="course"]:checked'
+                    );
+
+                const selectedCodes = [];
+
+                selectedCheckboxes.forEach(function(checkbox) {
+                    selectedCodes.push(checkbox.value);
+                });
+
+
+                // At least one course must be selected
+                if (selectedCodes.length === 0) {
+
+                    errorMessage.textContent =
+                        "Please select at least one course.";
+
+                    errorMessage.style.display = "block";
+
+                    return;
+                }
+
+
+                // Calculate total courses and credits
+                const result =
+                    calculateRegistration(selectedCodes);
+
+
+                // Display student information
+                document.getElementById("summaryName")
+                    .textContent = studentName;
+
+                document.getElementById("summaryRegno")
+                    .textContent = regno;
+
+                document.getElementById("summaryDepartment")
+                    .textContent = department;
+
+
+                // Display selected courses dynamically
+                const courseList =
+                    document.getElementById("selectedCourses");
+
+                courseList.innerHTML = "";
+
+
+                selectedCodes.forEach(function(code) {
+
+                    const course = courses.find(function(item) {
+                        return item.code === code;
+                    });
+
+                    if (course) {
+
+                        const listItem =
+                            document.createElement("li");
+
+                        listItem.textContent =
+                            course.code + " - " +
+                            course.name + " (" +
+                            course.credits +
+                            " Credits)";
+
+                        courseList.appendChild(listItem);
+                    }
+
+                });
+
+
+                // Display totals
+                document.getElementById("totalCourses")
+                    .textContent = result.totalCourses;
+
+                document.getElementById("totalCredits")
+                    .textContent = result.totalCredits;
+
+
+                // Display summary without reloading page
+                summary.style.display = "block";
+
+
+                // ---------- Debugging ----------
+                console.log("Registration Successful");
+                console.log("Student:", studentName);
+                console.log("Register Number:", regno);
+                console.log("Selected Courses:", selectedCodes);
+                console.log("Total Credits:", result.totalCredits);
+
+            });
+
+    </script>
+
+</body>
+</html>
