@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration Preview</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #displayBtn {
+            background-color: green;
+            color: white;
+        }
+
+        #removeBtn {
+            background-color: red;
+            color: white;
+        }
+
+        .profile {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border: 2px solid green;
+            border-radius: 8px;
+        }
+
+        .profile h3 {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Student Registration</h2>
+
+    <label>Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <label>Register Number:</label>
+    <input type="text" id="regno" placeholder="Enter register number">
+
+    <label>Department:</label>
+    <input type="text" id="department" placeholder="Enter department">
+
+    <label>Year of Study:</label>
+    <select id="year">
+        <option value="">Select Year</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4th Year">4th Year</option>
+    </select>
+
+    <button id="displayBtn">Display Profile</button>
+    <button id="removeBtn">Remove Profile</button>
+
+    <div id="profileContainer"></div>
+
+</div>
+
+<script>
+
+    // Display Profile
+    document.getElementById("displayBtn").addEventListener("click", function() {
+
+        // Get values using DOM
+        let name = document.getElementById("name").value;
+        let regno = document.getElementById("regno").value;
+        let department = document.getElementById("department").value;
+        let year = document.getElementById("year").value;
+
+        // Check empty fields
+        if (name === "" || regno === "" || department === "" || year === "") {
+            alert("Please fill all the fields!");
+            return;
+        }
+
+        // Create profile element
+        let profile = document.createElement("div");
+
+        // Add CSS class using classList
+        profile.classList.add("profile");
+
+        // Generate profile content
+        profile.innerHTML = `
+            <h3>Student Profile</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Register Number:</strong> ${regno}</p>
+            <p><strong>Department:</strong> ${department}</p>
+            <p><strong>Year of Study:</strong> ${year}</p>
+        `;
+
+        // Display profile dynamically
+        let container = document.getElementById("profileContainer");
+
+        // Remove previous profile
+        container.innerHTML = "";
+
+        // Add new profile
+        container.appendChild(profile);
+    });
+
+
+    // Remove Profile
+    document.getElementById("removeBtn").addEventListener("click", function() {
+
+        let container = document.getElementById("profileContainer");
+
+        // Remove displayed profile
+        container.innerHTML = "";
+    });
+
+</script>
+
+</body>
+</html>
