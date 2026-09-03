@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Responsive viewport -->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cross-Browser Compatible Webpage</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Cross-Browser Compatible Webpage</h1>
+        <p>Feature Detection and Fallback Demonstration</p>
+    </header>
+
+
+    <main class="container">
+
+        <section class="card">
+
+            <h2>Welcome</h2>
+
+            <p>
+                This webpage checks browser support for
+                localStorage, querySelector(), and modern CSS features.
+            </p>
+
+            <button id="saveButton">
+                Save My Name
+            </button>
+
+            <button id="loadButton">
+                Load My Name
+            </button>
+
+            <br><br>
+
+            <input
+                type="text"
+                id="nameInput"
+                placeholder="Enter your name"
+            >
+
+            <p id="message">
+                Browser support status will appear here.
+            </p>
+
+        </section>
+
+
+        <section class="card">
+
+            <h2>Feature Support</h2>
+
+            <p id="storageStatus">
+                Checking localStorage support...
+            </p>
+
+            <p id="queryStatus">
+                Checking querySelector support...
+            </p>
+
+            <p id="cssStatus">
+                CSS fallback is active when required.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>© 2026 Cross-Browser Compatible Webpage</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

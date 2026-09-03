@@ -1,0 +1,99 @@
+
+// Function to display all browser information
+
+function updateBrowserInfo() {
+
+    // Current URL using window.location
+    document.getElementById("url").textContent =
+        window.location.href;
+
+
+    // Browser language using navigator
+    document.getElementById("language").textContent =
+        navigator.language;
+
+
+    // Online / Offline status using navigator
+    if (navigator.onLine) {
+
+        document.getElementById("status").textContent =
+            "Online";
+
+    } else {
+
+        document.getElementById("status").textContent =
+            "Offline";
+    }
+
+
+    // Screen width using screen object
+    document.getElementById("screenWidth").textContent =
+        screen.width + " px";
+
+
+    // Screen height using screen object
+    document.getElementById("screenHeight").textContent =
+        screen.height + " px";
+
+
+    // Viewport width using window.innerWidth
+    document.getElementById("viewportWidth").textContent =
+        window.innerWidth + " px";
+
+
+    // Viewport height using window.innerHeight
+    document.getElementById("viewportHeight").textContent =
+        window.innerHeight + " px";
+
+
+    // Horizontal scroll position
+    document.getElementById("scrollX").textContent =
+        window.scrollX + " px";
+
+
+    // Vertical scroll position
+    document.getElementById("scrollY").textContent =
+        window.scrollY + " px";
+}
+
+
+// Display information when page loads
+updateBrowserInfo();
+
+
+// Update information when browser window is resized
+window.addEventListener("resize", function () {
+
+    updateBrowserInfo();
+
+});
+
+
+// Update scroll position when the user scrolls
+window.addEventListener("scroll", function () {
+
+    document.getElementById("scrollX").textContent =
+        window.scrollX + " px";
+
+    document.getElementById("scrollY").textContent =
+        window.scrollY + " px";
+
+});
+
+
+// Detect when internet connection is restored
+window.addEventListener("online", function () {
+
+    document.getElementById("status").textContent =
+        "Online";
+
+});
+
+
+// Detect when internet connection is lost
+window.addEventListener("offline", function () {
+
+    document.getElementById("status").textContent =
+        "Offline";
+
+});

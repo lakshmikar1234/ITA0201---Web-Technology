@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Manipulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 id="mainHeading">Student Profile</h1>
+
+        <div id="profileCard" class="profile-card">
+
+            <h2 id="studentName">Lakshmi</h2>
+
+            <p id="studentDetails">
+                Register Number: 23CS101<br>
+                Department: Computer Science and Engineering<br>
+                Year: III Year
+            </p>
+
+            <p id="status">Profile Status: Active</p>
+
+        </div>
+
+        <div class="controls">
+
+            <h2>Profile Controls</h2>
+
+            <input type="text" id="headingInput"
+                   placeholder="Enter new heading">
+
+            <button onclick="changeHeading()">
+                Change Heading
+            </button>
+
+            <button onclick="changeTextColor()">
+                Change Text Colour
+            </button>
+
+            <button onclick="changeBackground()">
+                Change Background Colour
+            </button>
+
+            <button onclick="toggleProfile()">
+                Show / Hide Profile
+            </button>
+
+            <button onclick="changeStudentName()">
+                Change Student Name
+            </button>
+
+            <button onclick="highlightProfile()">
+                Highlight Profile
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

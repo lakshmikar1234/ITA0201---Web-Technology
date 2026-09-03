@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Event Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Saveetha University</h1>
+        <p>Interactive Event Registration Portal</p>
+    </header>
+
+    <div class="container">
+
+        <h2>Register for an Event</h2>
+
+        <!-- mouseover and mouseout -->
+        <div class="event-card"
+             onmouseover="mouseOverEvent()"
+             onmouseout="mouseOutEvent()">
+
+            <h3>University Tech Fest 2026</h3>
+            <p>Hackathon | Workshop | Cultural Events</p>
+
+        </div>
+
+        <form id="registrationForm">
+
+            <!-- input, focus and blur -->
+            <label>Student Name</label>
+            <input type="text"
+                   id="studentName"
+                   placeholder="Enter your name"
+                   oninput="showInput()"
+                   onfocus="focusField(this)"
+                   onblur="blurField(this)">
+
+            <label>Register Number</label>
+            <input type="text"
+                   id="registerNumber"
+                   placeholder="Enter register number">
+
+            <label>Email Address</label>
+            <input type="email"
+                   id="email"
+                   placeholder="Enter your email">
+
+            <!-- change event -->
+            <label>Department</label>
+            <select id="department" onchange="departmentChanged()">
+                <option value="">Select Department</option>
+                <option value="CSE">Computer Science Engineering</option>
+                <option value="IT">Information Technology</option>
+                <option value="ECE">Electronics and Communication</option>
+                <option value="EEE">Electrical and Electronics</option>
+            </select>
+
+            <label>Select Event</label>
+            <select id="event">
+                <option value="">Select Event</option>
+                <option value="Hackathon">Hackathon</option>
+                <option value="Workshop">Technical Workshop</option>
+                <option value="Cultural Fest">Cultural Fest</option>
+                <option value="Sports">Sports Event</option>
+            </select>
+
+            <!-- Intrinsic onclick -->
+            <button type="button" onclick="showInfo()">
+                Event Information
+            </button>
+
+            <!-- Form submit -->
+            <button type="submit">
+                Register Now
+            </button>
+
+        </form>
+
+        <div id="liveMessage"></div>
+        <div id="result"></div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Saveetha University | Event Registration Portal</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration | Saveetha University</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+
+        <div class="logo-section">
+
+            <div class="logo">
+                SU
+            </div>
+
+            <div>
+                <h2>Saveetha University</h2>
+                <p>Student Registration Portal</p>
+            </div>
+
+        </div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Registration</a>
+            <a href="#">Students</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Page Heading -->
+        <section class="hero">
+
+            <h1>Student Registration</h1>
+
+            <p>
+                Add and manage student records dynamically
+                using JavaScript DOM manipulation.
+            </p>
+
+        </section>
+
+
+        <!-- Registration Form -->
+        <section class="registration-card">
+
+            <h2>Register New Student</h2>
+
+            <p class="subtitle">
+                Enter the student details below
+            </p>
+
+
+            <div class="form-group">
+
+                <label for="studentName">
+                    Student Name
+                </label>
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Enter student name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="registerNumber">
+                    Register Number
+                </label>
+
+                <input
+                    type="text"
+                    id="registerNumber"
+                    placeholder="Enter register number"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="department">
+                    Department
+                </label>
+
+                <select id="department">
+
+                    <option value="">
+                        Select Department
+                    </option>
+
+                    <option value="Computer Science and Engineering">
+                        Computer Science and Engineering
+                    </option>
+
+                    <option value="Information Technology">
+                        Information Technology
+                    </option>
+
+                    <option value="Electronics and Communication Engineering">
+                        Electronics and Communication Engineering
+                    </option>
+
+                    <option value="Mechanical Engineering">
+                        Mechanical Engineering
+                    </option>
+
+                    <option value="Artificial Intelligence and Data Science">
+                        AI & Data Science
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button class="add-btn" onclick="addStudent()">
+                + Add Student
+            </button>
+
+        </section>
+
+
+        <!-- Student List -->
+        <section class="student-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Registered Students</h2>
+
+                    <p>
+                        Total Students:
+                        <span id="studentCount">0</span>
+                    </p>
+                </div>
+
+
+                <button
+                    class="clear-btn"
+                    onclick="clearAll()">
+                    Clear All
+                </button>
+
+            </div>
+
+
+            <!-- Dynamic student records will be added here -->
+            <div id="studentList">
+
+                <div id="emptyMessage" class="empty-message">
+
+                    <div class="empty-icon">
+                        👨‍🎓
+                    </div>
+
+                    <h3>No Students Registered</h3>
+
+                    <p>
+                        Add a student using the registration form.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h3>Saveetha University</h3>
+
+        <p>
+            Student Registration Management System
+        </p>
+
+        <p>
+            © 2026 Saveetha University
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
